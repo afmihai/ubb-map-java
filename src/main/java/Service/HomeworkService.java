@@ -1,6 +1,7 @@
 package Service;
 
 import Domain.Homework;
+import Domain.Semester;
 import Repository.HomeworkRepository;
 
 import java.util.ArrayList;
@@ -21,10 +22,14 @@ public class HomeworkService {
     }
 
     public Homework update(Homework homework) {
+
         return homeworkRepository.update(homework);
     }
 
     public Homework save(Homework homework) {
+        Semester semester = new Semester();
+        int startWeek = semester.getCurrentWeek();
+        homework.setStartWeek(startWeek);
         return homeworkRepository.save(homework);
     }
 
